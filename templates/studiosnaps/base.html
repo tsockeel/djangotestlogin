@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>{% block title %} Hey you {% endblock %}</title>
+	</head>
+
+	<body>
+		<div>
+			<h1><a href="/studiosnaps/">StudioSnaps</a></h1>
+		</div>
+		<hr />
+		<div>
+			<ul>
+				{% block auth_block %}{% endblock %}
+
+				{% block body_block %}{% endblock %}
+
+			</ul>
+		</div>
+
+		
+	</body>
+</html>

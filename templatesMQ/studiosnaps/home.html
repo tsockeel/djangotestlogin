@@ -1,0 +1,28 @@
+{% extends "studiosnaps/base.html" %}
+
+{% block title %}Welcome{% endblock %}
+		
+{% block auth_block %}
+	{% if request.session.isTracking %}
+		<li>Now tracking - <a href="/studiosnaps/stoptracking/">Stop tracking me !!</a></li>
+	{% else %}
+		<li><a href="/studiosnaps/starttracking/">Track me</a></li>
+	{% endif %}
+
+	{% if user.is_authenticated %}
+		<li><a href="/studiosnaps/profile">+ {{ user.username }}</a> connected !</li>
+		<li><a href="/studiosnaps/logout/">Logout</a></li>
+	{% else %}
+		{% if error %}
+		<p><strong>Username or password invalid</strong></p>
+		{% endif %}
+
+		<form method="post" action=".">
+		{% csrf_token %}
+		{{ login_form.as_p }}
+		<input type="submit" value="Log in"/>
+		</form>
+		<hr />
+		<a href="/studiosnaps/register/">Register Here</a>
+	{% endif %}
+{% endblock %}
